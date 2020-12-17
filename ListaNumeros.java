@@ -3,15 +3,15 @@
  * La clase representa a una lista de 
  * números enteros
  * 
- * @author - 
+ * @author - Carla Barberia
  * 
  */
 import java.util.Arrays;
 
 public class ListaNumeros 
 {
-    // definir atributos
-
+    private int [] ListaNumeros;
+    private int pos;
     /**
      * Constructor de la clase ListaNumeros 
      * Crea e inicializa adecuadamente los
@@ -20,7 +20,8 @@ public class ListaNumeros
      * @param n el tamaño máximo de la lista
      */
     public ListaNumeros(int n) {
-         
+         this.ListaNumeros = new int[n];
+         this.pos = 0;
     }
 
     /**
@@ -42,8 +43,7 @@ public class ListaNumeros
      * Hacer sin if
      */
     public boolean estaCompleta() {
-         return true;
-
+         return pos == ListaNumeros.length;
     }
 
     /**
@@ -51,15 +51,14 @@ public class ListaNumeros
      * Hacer sin if
      */
     public boolean estaVacia() {
-         return true;
+         return ListaNumeros.length == 0;
     }
 
     /**
      * devuelve el nº de elementos realmente guardados en la lista
      */
     public int getTotalNumeros() {
-        return 0;
-
+        return ListaNumeros.length;
     }
 
     /**
@@ -69,7 +68,7 @@ public class ListaNumeros
          
     }
     
-     /**
+    /**
      * Representación textual de la lista de la forma indicada 
      * (leer enunciado)
      * 
@@ -78,9 +77,7 @@ public class ListaNumeros
     public String toString() {
          
         return "";
-    }
-    
-    
+    }    
 
     /**
      * Mostrar en pantalla la lista
@@ -113,22 +110,27 @@ public class ListaNumeros
      * 
      */
     public int buscarBinario(int numero) {
- 
-        return 0;
-
+        if(Arrays.binarySearch(ListaNumeros, numero) > 0 ){
+            return -1;
+        }else{
+            return pos;
+        }
     }
-
    
 
     /**
      * borra el primer elemento de la lista
      */
     public void borrarPrimero() {
-         
-
+         for (int i = pos; i < ListaNumeros.length;i++){
+             ListaNumeros[i] = ListaNumeros[i + 1];
+             // for(int j = 0; j < ListaNumeros[i].length;j++){
+                 
+                // }
+            }
     }
     
-     /**
+    /**
      *  Invierte cada uno de los grupos de n elementos que hay en lista
      *  
      *  Si el nº de elementos en lista no es divisible entre n los elementos restantes 
@@ -142,8 +144,6 @@ public class ListaNumeros
 
     }
 
-   
-  
     /**
      * devuelve un ragged array de 2 dimensiones con tantas filas como valores
      * tenga el atributo lista y rellena el array de la forma indicada
