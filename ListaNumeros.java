@@ -32,8 +32,20 @@ public class ListaNumeros
      * @return true si se ha podido añadir, false en otro caso
      */
     public boolean addElemento(int numero) {
-
-        return true;
+        if(estaCompleta() != true){
+            if(pos == 0){
+                ListaNumeros[0] = numero;
+            }else{
+                for(int i = ListaNumeros.length - 1; i >= 0;i--){
+                    ListaNumeros[i + 1] = ListaNumeros[i];
+                }
+                ListaNumeros[0] = numero;
+            }
+            pos++;
+            return true;
+        }else{
+            return false;
+        }
     }
 
     /**
@@ -78,11 +90,11 @@ public class ListaNumeros
             return "";
         }else{
             for(int i = 0; i < ListaNumeros.length;i++){
-                str = str + String.format("%8d" + ListaNumeros[i]);
+                str = str + String.format("%8d", ListaNumeros[i]);
             }
             str += "\n";
             for(int i = 0; i < ListaNumeros.length;i++){
-                str = str + String.format("%8d" + i);
+                str = str + String.format("%8d", i);
             }
         }
         return str;
@@ -143,7 +155,7 @@ public class ListaNumeros
      */
     public void borrarPrimero() {
         for (int i = pos; i < ListaNumeros.length;i++){
-            
+
         }
     }
 
@@ -157,8 +169,20 @@ public class ListaNumeros
      *  
      */
     public void invertir(int n) {
-        for(int i = 0; i < ListaNumeros.length;i++){
-            
+        int grupo = ListaNumeros.length / n;
+        int residuo = ListaNumeros.length % n;
+        int j = n;
+        int aux = 0;
+        int contador = 1;
+        while(contador <= grupo + 1){
+            j = n * contador;
+            for(int i = j - n; i <= j;i++){
+                aux = ListaNumeros[i];
+                ListaNumeros[i] = ListaNumeros[j];
+                ListaNumeros[j] = aux;
+                j--;
+            }
+            contador++;
         }
     }
 
@@ -171,7 +195,7 @@ public class ListaNumeros
     public int[][] toArray2D() {
         int[][] ragged = new int[ListaNumeros.length][];
         for (int i = 0; i < ragged.length; i++) {
-          
+
         }
         return ragged;
     }
