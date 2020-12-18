@@ -20,8 +20,8 @@ public class ListaNumeros
      * @param n el tamaño máximo de la lista
      */
     public ListaNumeros(int n) {
-         this.ListaNumeros = new int[n];
-         this.pos = 0;
+        this.ListaNumeros = new int[n];
+        this.pos = 0;
     }
 
     /**
@@ -32,10 +32,8 @@ public class ListaNumeros
      * @return true si se ha podido añadir, false en otro caso
      */
     public boolean addElemento(int numero) {
-        
-        
-        return true;
 
+        return true;
     }
 
     /**
@@ -43,7 +41,7 @@ public class ListaNumeros
      * Hacer sin if
      */
     public boolean estaCompleta() {
-         return pos == ListaNumeros.length;
+        return ListaNumeros.length == pos;
     }
 
     /**
@@ -51,7 +49,7 @@ public class ListaNumeros
      * Hacer sin if
      */
     public boolean estaVacia() {
-         return ListaNumeros.length == 0;
+        return ListaNumeros.length == 0;
     }
 
     /**
@@ -65,9 +63,9 @@ public class ListaNumeros
      * Vacía la lista
      */
     public void vaciarLista() {
-         
+        ListaNumeros = null;
     }
-    
+
     /**
      * Representación textual de la lista de la forma indicada 
      * (leer enunciado)
@@ -75,8 +73,19 @@ public class ListaNumeros
      * Si la lista está vacía devuelve ""
      */
     public String toString() {
-         
-        return "";
+        String str = ""; 
+        if(estaVacia() == true){
+            return "";
+        }else{
+            for(int i = 0; i < ListaNumeros.length;i++){
+                str = str + String.format("%8d" + ListaNumeros[i]);
+            }
+            str += "\n";
+            for(int i = 0; i < ListaNumeros.length;i++){
+                str = str + String.format("%8d" + i);
+            }
+        }
+        return str;
     }    
 
     /**
@@ -93,9 +102,15 @@ public class ListaNumeros
      *  
      */
     public int[] buscarPosicionesDe(int numero) {
-         
-        return null;
-
+        int [] encontrar = new int[ListaNumeros.length]; 
+        int contador = 0;
+        for(int i = 0; i < ListaNumeros.length;i++){
+            if(ListaNumeros[i] == numero){
+                encontrar[contador] = i;
+                contador++;
+            }
+        }
+        return encontrar;
     }
 
     /**
@@ -110,26 +125,28 @@ public class ListaNumeros
      * 
      */
     public int buscarBinario(int numero) {
-        if(Arrays.binarySearch(ListaNumeros, numero) > 0 ){
-            return -1;
+        int contador = 0;
+        for(int i = 0; i < ListaNumeros.length;i++){
+            if(ListaNumeros[i] == numero){
+                contador++;
+            }
+        }
+        if(contador == 0){
+            return Arrays.binarySearch(ListaNumeros, numero);
         }else{
-            return pos;
+            return contador;
         }
     }
-   
 
     /**
      * borra el primer elemento de la lista
      */
     public void borrarPrimero() {
-         for (int i = pos; i < ListaNumeros.length;i++){
-             ListaNumeros[i] = ListaNumeros[i + 1];
-             // for(int j = 0; j < ListaNumeros[i].length;j++){
-                 
-                // }
-            }
+        for (int i = pos; i < ListaNumeros.length;i++){
+            
+        }
     }
-    
+
     /**
      *  Invierte cada uno de los grupos de n elementos que hay en lista
      *  
@@ -140,8 +157,9 @@ public class ListaNumeros
      *  
      */
     public void invertir(int n) {
-         
-
+        for(int i = 0; i < ListaNumeros.length;i++){
+            
+        }
     }
 
     /**
@@ -151,8 +169,11 @@ public class ListaNumeros
      * 
      */
     public int[][] toArray2D() {
-        
-        return null;
+        int[][] ragged = new int[ListaNumeros.length][];
+        for (int i = 0; i < ragged.length; i++) {
+          
+        }
+        return ragged;
     }
 
     /**
@@ -174,7 +195,6 @@ public class ListaNumeros
         System.out.println(lista.toString());
         System.out.println("\t" + numero + " aparece en posiciones ");
         // seguir completando
-         
 
     }
 }
