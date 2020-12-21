@@ -1,4 +1,3 @@
-
 /**
  * La clase representa a una lista de 
  * números enteros
@@ -7,7 +6,6 @@
  * 
  */
 import java.util.Arrays;
-
 public class ListaNumeros 
 {
     private int [] lista;
@@ -33,7 +31,8 @@ public class ListaNumeros
      */
     public boolean addElemento(int numero) {
         if(!estaCompleta()){
-            lista[pos] = numero;
+            System.arraycopy(lista, 0, lista, 1, pos);
+            lista[0] = numero;
             pos++;
             return true;
         }
@@ -133,7 +132,7 @@ public class ListaNumeros
         Arrays.sort(arrayOrden);
         int contador = 0;
         for(int i = 0; i < lista.length;i++){
-            if(ListaNumeros[i] == numero){
+            if(lista[i] == numero){
                 contador++;
             }
         }
@@ -188,11 +187,14 @@ public class ListaNumeros
      * 
      */
     public int[][] toArray2D() {
-        int[][] ragged = new int[lista.length][];
+        int[][] ragged = new int[pos][];
         for (int i = 0; i < ragged.length; i++) {
             ragged[i] = new int[i + 1];
             ragged[i][0] = 1;
             ragged[i][ragged[i].length - 1] = 0;
+            for (int j = 1; j < ragged[i].length;j++){
+                ragged[i][j] = ragged[i][j] + ragged[i - 1][j-1];
+            }
             }
         return ragged;
         }        
@@ -215,7 +217,29 @@ public class ListaNumeros
         int numero = 21;
         System.out.println(lista.toString());
         System.out.println("\t" + numero + " aparece en posiciones");
-        // seguir completando
-
+                
+        System.out.println("--- buscarBinario() -------");
+        System.out.println(lista.toString());
+        System.out.println("\t" + "El" + numero + "está?" + lista.buscarBinario(numero));
+        
+        System.out.println("--- borrarPrimero() -------");
+        System.out.println(lista.toString());
+        System.out.println("\t" + "Borrado: ");
+        lista.borrarPrimero();
+        
+        System.out.println("--- invertir() -------");
+        System.out.println(lista.toString());
+        int invertido = 3;
+        lista.invertir(invertido);
+        System.out.println("\t" + "Invertido: " + invertido);
+        
+        System.out.println("--- toArray2D() -------");
+        System.out.println(lista.toString());
+        int[][] ragged = lista.toArray2D();
+        for (int i = 0; i < ragged.length; i++){
+            for (int j = 1; j < ragged[i].length;j++){
+                System.out.print(ragged[i][j]);
+            }
+        }       
     }
 }
